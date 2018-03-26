@@ -1,0 +1,77 @@
+FORMAT: 1A
+HOST: https://servantfornoobies.docs.apiary.io/
+
+# Servant for Noobies (by Noobies)
+
+Lets create the most awesome Cat Photobloging API!
+
+
+## Cats Collection [/cats]
+
+### List All cats [GET]
++ Response 200 (application/json)
+    + Attributes (array[FullCat], fixed-type)
+
+### Create Cat [POST]
++ Request (application/json)
+    + Attributes (Cat)
++ Response 201 (application/json)
+    + Attributes (FullCat)
+
+## Cat Operations [/cats/{id}]
++ Parameters
+    + id: 2 (number, required) - A cat ID
+
+### Update Cat [PUT]
++ Request (application/json)
+    + Attributes (FullCat)
++ Response 201 (application/json)
+    + Attributes (FullCat)
+
+### Delete Cat [DELETE]
++ Response 204
+
+### Cat Pics [GET]
++ Response 200 (application/json)
+    + Attributes (RelationalCat)
+
+## Pics [/pics]
+
+### Create [POST]
++ Request (application/json)
+    + Attributes (Pic)
++ Response 201 (application/json)
+    + Attributes (Pic)
+
+### Delete [DELETE]
++ Request (application/json)
+    + Attributes (Pic)
++ Response 204
+
+## Data Structures
+
+### Cat
+* name: `Fuzzy Mc Fuzzboots` (string, required)
+* age: 4 (number, required)
+* color (CatColor, required)
+
+### CatColor (enum)
+* DottedBrown
+* StripedBrown
+* Black
+
+### FullCat (Cat)
+* id: 1 (number, required)
+
+### RelationalCat (Cat)
+* pics (array[Pic], fixed-type, required)
+
+### Pic
+* location (Location, required) Where the pic was taken
+* popularity: 99 (number, required) Bounded to 100
+* catId: 2 (number, required) The ID of the cat in the picture
+
+### Location (enum)
+* EastCoast
+* Riviera
+* Narnia
