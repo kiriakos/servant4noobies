@@ -1,10 +1,11 @@
 module Fixtures
-    ( users
+    ( cats
     ) where
 
-import Types (User(..))
+import Types (FullCat(..), CatColor(..))
 
-users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
-        ]
+cats :: [FullCat]
+cats = [ FullCat 1 "Fuzzy McFuzzboots" 8 DottedBrown
+       , FullCat 2 "Bella Furrball" 12 Black
+       , FullCat 3 "Tiga Foots" 10 StripedBrown 
+       ] 
