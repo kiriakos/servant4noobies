@@ -1,29 +1,26 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators   #-}
+{-# LANGUAGE DeriveAnyClass  #-}
+{-# LANGUAGE DeriveGeneric   #-}
+
 module Lib
-    ( startApp
-    , app
+    ( app
     ) where
 
 import Data.Aeson
 import Data.Aeson.TH
 import Network.Wai
-import Network.Wai.Handler.Warp
+import GHC.Generics (Generic)
 import Servant
 
 data User = User
   { userId        :: Int
   , userFirstName :: String
   , userLastName  :: String
-  } deriving (Eq, Show)
-
-$(deriveJSON defaultOptions ''User)
+  } deriving (Eq, Show, Generic, ToJSON, FromJSON)
 
 type API = "users" :> Get '[JSON] [User]
-
-startApp :: IO ()
-startApp = run 8080 app
 
 app :: Application
 app = serve api server
