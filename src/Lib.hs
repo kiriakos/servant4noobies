@@ -1,8 +1,7 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeOperators   #-}
-{-# LANGUAGE DeriveAnyClass  #-}
-{-# LANGUAGE DeriveGeneric   #-}
+
 
 module Lib
     ( app
@@ -11,14 +10,9 @@ module Lib
 import Data.Aeson
 import Data.Aeson.TH
 import Network.Wai
-import GHC.Generics (Generic)
 import Servant
-
-data User = User
-  { userId        :: Int
-  , userFirstName :: String
-  , userLastName  :: String
-  } deriving (Eq, Show, Generic, ToJSON, FromJSON)
+import Fixtures (users)
+import Types (User)
 
 type API = "users" :> Get '[JSON] [User]
 
@@ -31,7 +25,3 @@ api = Proxy
 server :: Server API
 server = return users
 
-users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
-        ]
