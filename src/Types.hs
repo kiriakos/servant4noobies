@@ -2,7 +2,7 @@
 {-# LANGUAGE DeriveGeneric   #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DuplicateRecordFields #-}
-
+{-# LANGUAGE TemplateHaskell #-}
 
 module Types
     ( Cat(..)
@@ -15,6 +15,9 @@ module Types
 
 import GHC.Generics (Generic)
 import Data.Aeson (ToJSON, FromJSON)
+import Database.Persist.TH (derivePersistField)
+import Database.Persist (Entity)
+
 
 data Cat = Cat { name :: String
                , age :: Int
@@ -43,5 +46,11 @@ data Pic = Pic { location :: PicLoc
                , catId :: Int
   } deriving (Eq, Show, Generic, ToJSON, FromJSON)
 
-data CatColor = DottedBrown | StripedBrown | Black deriving (Show, Read, Eq, Generic, ToJSON, FromJSON)
-data PicLoc = EastCoast | Riviera | Narnia deriving (Show, Read, Eq, Generic, ToJSON, FromJSON)
+data CatColor = DottedBrown | StripedBrown | Black 
+    deriving (Show, Read, Eq, Generic, ToJSON, FromJSON)
+
+data PicLoc = EastCoast | Riviera | Narnia 
+    deriving (Show, Read, Eq, Generic, ToJSON, FromJSON)
+
+derivePersistField "CatColor"
+derivePersistField "PicLoc"

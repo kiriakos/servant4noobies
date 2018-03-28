@@ -18,11 +18,20 @@ library
   exposed-modules:     Lib
                      , Types
                      , Fixtures
+                     , DB
   build-depends:       base >= 4.7 && < 5
                      , aeson
+                     , filepath
                      , servant-server
                      , wai
                      , warp
+                     , text
+                     , directory
+                     , monad-logger
+                     , persistent
+                     , persistent-sqlite
+                     , persistent-template
+                     , mtl
   default-language:    Haskell2010
 
 executable s4n-exe
