@@ -2,10 +2,13 @@
 
 ## Goals
 
-* REST API with some sort of CRUD
+* Create a REST API with some sort of CRUD
 * Logging
 * Some Transactional, Queryable persistence
 * Some external config
+
+Based on an API Blueprint we will implement an API (that hopefully passes dredd)
+Reference blueprint: [Servant 4 Noobies @ Apiary.io](https://servantfornoobies.docs.apiary.io)
 
 ## Instructions
 
