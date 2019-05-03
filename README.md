@@ -8,6 +8,7 @@
 * Some external config
 
 Based on an API Blueprint we will implement an API (that hopefully passes dredd)
+
 Reference blueprint: [Servant 4 Noobies @ Apiary.io](https://servantfornoobies.docs.apiary.io)
 
 ## Instructions
